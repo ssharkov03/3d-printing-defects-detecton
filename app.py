@@ -189,7 +189,7 @@ async def get_yes_defects(time=10):
                 # for logs
                 print("TEST_YES: OK")
 
-                # maybe update last time of YES and then put in into the statement
+                # loud notification - medium defects detected
                 if prob_yes_defects >= 0.65:  # 0.65 - based on verdicts in get_prediction
 
                     # load photo to memory and push it to bot
