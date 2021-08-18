@@ -1,9 +1,9 @@
 # 3d-printing-defects-detecton
 
-# Model training notebook
+## Model training notebook
 https://www.kaggle.com/sergeisharkov/3d-printing-defects-detection-notebook
 
-# Defects dataset
+## Defects dataset
 https://www.kaggle.com/sergeisharkov/3d-printer-defects-dataset
 
 
