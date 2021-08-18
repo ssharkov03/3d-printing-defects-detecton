@@ -26,7 +26,7 @@ model = model.to(device)
 
 # Load model
 path_to_model = 'alexnet_mixed_good_ds_different_lrs.pth.tar'
-load_checkpoint(torch.load(path_to_model, map_location=torch.device('cpu')))
+load_checkpoint(torch.load(path_to_model, map_location=device))
 
 
 # Reconfig for cleaner result
