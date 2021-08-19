@@ -23,7 +23,7 @@ from aiogram.contrib.middlewares.logging import LoggingMiddleware
 from aiogram.dispatcher.filters import Command, Text
 
 # Hyper-parameters
-YOUR_TIME_YES = 30   # check image for defects every YOUR_TIME_YES, if defects prob. > 0.65, you will be notified
+YOUR_TIME_YES = 20   # check image for defects every YOUR_TIME_YES seconds, if defects prob. > 0.65, you will be notified
 YOUR_TIME_ALL = 300  # you will be notified every YOUR_TIME_ALL seconds about current state
 
 
@@ -44,18 +44,18 @@ db = SQLiteDatabase("database_example.db")  # INPUT your database file
 @dp.message_handler(Command("start"))
 async def show_menu(message: types.Message):
     text = """
-Hello, my name is Defects detection bot 3000! 🤖
+Hello, my name is Defects detection bot 3000!
 
-I will be able to notify you if any defect happens while 3d-printing! 🖨️
-Anyways, you will get the current state every 5 minutes after turning on the stream. ⏱️
+I will notify you if any defect happens while 3d-printing! 🖨️
+You will also get the current state every 5 minutes after turning on the stream. ⏱️
 
 Here the steps to start bot: 🔔
 
-    🌐 Connect your stream using "Connect stream" command or button
-    👀 Use "Watch stream" command or button to get images with predictions every 5 minutes and every time when defect is detected
-    🎬 To stop getting notifications use "Stop stream" command or button
+    🌐 Connect your stream using the "Connect stream" command or button
+    👀 Use the "Watch stream" command or button to get images with predictions every 5 minutes and whenever defect is detected
+    🎬 To stop getting notifications use the "Stop stream" command or button
 
-If something is not clear you can always use "Help" command or button 🆘
+If something is not clear, you can always use the "Help" command or button 🆘
 
 Enjoy 🍿
     """
@@ -68,18 +68,17 @@ Enjoy 🍿
 @dp.message_handler(Text(equals=["Help", "/help"]))
 async def process_start_command(message: types.Message):
     text = """
-Hello, my name is Defects detection bot 3000! 🤖
-
-I will be able to notify you if any defect happens while 3d-printing! 🖨️
-Anyways, you will get the current state every 5 minutes after turning on the stream. ⏱️
+    
+I will notify you if any defect happens while 3d-printing! 🖨️
+You will also get the current state every 5 minutes after turning on the stream. ⏱️
 
 Here the steps to start bot: 🔔
 
-    🌐 Connect your stream using "Connect stream" command or button
-    👀 Use "Watch stream" command or button to get images with predictions every 5 minutes and every time when defect is detected
-    🎬 To stop getting notifications use "Stop stream" command or button
+    🌐 Connect your stream using the "Connect stream" command or button
+    👀 Use the "Watch stream" command or button to get images with predictions every 5 minutes and whenever defect is detected
+    🎬 To stop getting notifications use the "Stop stream" command or button
 
-If something is not clear you can always use "Help" command or button 🆘
+If something is not clear, you can always use the "Help" command or button 🆘
 
 Enjoy 🍿
     """
