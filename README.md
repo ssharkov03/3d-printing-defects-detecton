@@ -141,11 +141,17 @@ if ret and frame is not None:
 
 ![1](https://user-images.githubusercontent.com/37328273/129976133-5dcfdea6-7808-4387-9b0c-f5cb3498719a.jpg)
 
-3. Go to Settings/Buildpacks, click Add buildpack and type in *"[https://buildpack-registry.s3.amazonaws.com/buildpacks/heroku-community/apt.tgz](https://buildpack-registry.s3.amazonaws.com/buildpacks/heroku-community/apt.tgz)"* without quotes
+3. Go to Settings/Buildpacks, click Add buildpack and type in 
+``` bash
+https://buildpack-registry.s3.amazonaws.com/buildpacks/heroku-community/apt.tgz
+```
 
 ![2](https://user-images.githubusercontent.com/37328273/129976265-5e5db151-2e41-40cd-ae94-0ecf6de10431.jpg)
 
-4. Do the same with *"heroku/python"* buildpack
+4. Do the same with this buildpack
+``` bash
+heroku/python
+```
 5. Login heroku through command line
 
 ```bash
