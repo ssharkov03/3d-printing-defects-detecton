@@ -27,6 +27,7 @@ from aiogram.dispatcher.filters import Command, Text
 # Hyper-parameters
 T = 30  # Check image from camera for defects every T seconds
 database_name = "YOUR_NAME.db"  # Input your database filename
+Q = 0.65 # Threshold for defects
 
 # Bot settings
 logging.basicConfig(level=logging.INFO)
@@ -186,11 +187,11 @@ async def notification_period(message: types.Message, state: FSMContext):
         try:
             time = int(time)
 
-            if time < 30:
+            if time < T:
 
-                # if time input is integer but less than 30
+                # if time input is integer but less than update period
                 await message.answer(
-                    "Notification period is not updated. Please, input the integer greater than 29...",
+                    f"Notification period is not updated. Please, input the integer greater than {T - 1}...",
                     reply_markup=reconnect_editPeriods_watch_help)
                 dp.current_state(user=message.from_user.id)
                 await state.reset_state()
@@ -237,11 +238,11 @@ async def defect_period(message: types.Message, state: FSMContext):
         try:
             time = int(time)
 
-            if time < 30:
+            if time < T:
 
-                # if time input is integer but less than 30
+                # if time input is integer but less than update period
                 await message.answer(
-                    "Defects period is not updated. Please, input the integer greater than 29...",
+                    f"Defects period is not updated. Please, input the integer greater than {T - 1}...",
                     reply_markup=reconnect_editPeriods_watch_help)
                 dp.current_state(user=message.from_user.id)
                 await state.reset_state()
@@ -275,7 +276,7 @@ async def defect_period(message: types.Message, state: FSMContext):
             await state.reset_state()
 
 
-# Mute alert notifications (prob > 0.65) command
+# Mute alert notifications (prob >= Q) command
 @dp.message_handler(Text(equals=["Mute defects notifications", "/mute_defects_notifications"]))
 async def mute(message: types.Message):
 
@@ -374,7 +375,7 @@ async def defects_check(T):
                         db.update_predictions_since_last(user_id=user[1], predictions_since_last=user[5] + 1)
 
                     # Defects notifications
-                    if user[7] * T >= user[6] and prob_yes_defects >= 0.65:
+                    if user[7] * T >= user[6] and prob_yes_defects >= Q:
                         print(f"defects! {user[1]}")
                         # load photo to memory and push it to bot
                         bio = BytesIO()
@@ -393,7 +394,7 @@ async def defects_check(T):
                         # if message is sent, then we start counting defects again
                         db.update_defects_since_last(user_id=user[1], defects_since_last=1)
 
-                    elif prob_yes_defects >= 0.65:
+                    elif prob_yes_defects >= Q:
                         # if current is with defects, then we increase its quantity
                         db.update_defects_since_last(user_id=user[1], defects_since_last=user[7] + 1)
                     else:
@@ -436,6 +437,6 @@ async def defects_check(T):
 if __name__ == '__main__':
     # create event loop
     loop = asyncio.get_event_loop()
-    loop.create_task(defects_check(T=30))
+    loop.create_task(defects_check(T))
     executor.start_polling(dp, skip_updates=True)
 
