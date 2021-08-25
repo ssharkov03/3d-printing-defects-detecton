@@ -28,7 +28,7 @@ $ git clone https://github.com/ssharkov03/3d-printing-defects-detecton.git
 
 
 ### Local runs
-If you want to run bot locally, install packages from requerements.txt
+If you want to run bot locally, install packages from requerements.txt  
 Also, install database (next step)
 
 
@@ -38,7 +38,6 @@ Also, install database (next step)
 
 1. Download archive via [https://sqlitestudio.pl/](https://sqlitestudio.pl/) 
 2. Unzip the archive
-3. 
 ##### Configuring database
 
 1. Open bot project and then open ***app.py*** file
